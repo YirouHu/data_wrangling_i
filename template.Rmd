@@ -1,0 +1,53 @@
+---
+title: "Data import"
+output: github_document
+---
+```{r}
+library(tidyverse)
+```
+
+Let's import a dataset
+
+```{r}
+litters_df =
+  read.csv("data_import_examples/FAS_litters.csv")
+```
+
+Look at your data
+
+```{r}
+names(litters_df)
+```
+Updates the namens in litter_df
+
+```{r}
+litters_df =
+  janitor::clean_names(litters_df)
+```
+
+Look at the data
+```{r}
+litters_df
+```
+
+
+Sometimes skimming data in neat?
+```{r}
+skimr::skim(litters_df)
+```
+
+
+
+#Fix the missing data
+We can skip=5
+```{r}
+litters_df = 
+  read.csv("data_import_examples/FAS_litters.csv", na = c("NA", ".", ""))
+```
+#Import Pups data
+```{r}
+pups_df = 
+  read.csv("data_import_examples/FAS_pups.csv",
+           skip = 3,
+           na = c("NA", ".", ""))
+```
