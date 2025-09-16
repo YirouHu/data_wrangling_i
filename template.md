@@ -16,6 +16,11 @@ library(tidyverse)
     ## ✖ dplyr::lag()    masks stats::lag()
     ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 
+``` r
+library(readxl)
+library(haven)
+```
+
 Let’s import a dataset
 
 ``` r
@@ -199,4 +204,58 @@ pups_df =
   read.csv("data_import_examples/FAS_pups.csv",
            skip = 3,
            na = c("NA", ".", ""))
+
+pups_df=
+  janitor::clean_names(pups_df)
+```
+
+# Okay waht about excel
+
+CSVs are really great but sometimes you get a excel file c+a+i
+
+``` r
+mlb_df = 
+  read_excel("data_import_examples/mlb11.xlsx")
+```
+
+Import LatR word counts
+
+``` r
+fatr_df = 
+  read_excel("data_import_examples/LotR_Words.xlsx")
+```
+
+    ## New names:
+    ## • `` -> `...2`
+    ## • `` -> `...3`
+    ## • `` -> `...4`
+    ## • `` -> `...6`
+    ## • `` -> `...7`
+    ## • `` -> `...8`
+    ## • `` -> `...10`
+    ## • `` -> `...11`
+
+\##SAS?
+
+Import the PULSE data
+
+``` r
+pulse_df = 
+  read_sas("data_import_examples/public_pulse_data.sas7bdat")
+
+pulse_df = 
+  janitor::clean_names(pulse_df)
+```
+
+\###Why do i hate read.csv so much
+
+``` r
+litters_df_base = 
+  read.csv("data_import_examples/FAS_litters.csv")
+```
+
+## what about data exporting
+
+``` r
+write.csv(fatr_df, "data_import_examples/fatr_df.csv")
 ```
